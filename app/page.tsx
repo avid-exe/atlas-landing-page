@@ -110,7 +110,7 @@ export default function Page() {
         <div className="hero-copy">
           <p className="eyebrow"><span className="eyebrow-dot" /> An independent student-built project</p>
           <h1>Your campus.<br /><em>Your questions.</em><br />One Atlas.</h1>
-          <p className="hero-text">Atlas is a student-built platform designed to help University of Ilesa students find information, access helpful resources, and navigate campus life more easily.</p>
+          <p className="hero-text">Atlas helps University of Ilesa students find answers, access resources, and navigate campus life.</p>
           <div className="hero-actions">
             <a className="button" href={chatbotUrl} target="_blank" rel="noreferrer">Try Atlas AI <ArrowUpRight /></a>
             <a className="button button-outline" href={libraryUrl} target="_blank" rel="noreferrer">Explore Atlas Library <ArrowUpRight /></a>
@@ -122,8 +122,10 @@ export default function Page() {
 
       <section id="about" className="section section-bordered container">
         <div className="section-intro reveal">
-          <SectionLabel>01 / The work in progress</SectionLabel>
-          <h2>Building Atlas,<br /><em>one step at a time.</em></h2>
+          <div>
+            <SectionLabel>01 / The work in progress</SectionLabel>
+            <h2>Building Atlas,<br /><em>one step at a time.</em></h2>
+          </div>
           <p>We&apos;re starting with the tools students need today and gradually building what comes next.</p>
         </div>
         <div className="milestones reveal reveal-stagger">
