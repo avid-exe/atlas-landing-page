@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { MilestoneSlider } from '@/components/milestone-slider'
 
 const chatbotUrl = 'https://unilesa-atlas.vercel.app/'
 const libraryUrl = 'https://atlas-library-henna.vercel.app/'
@@ -98,7 +97,23 @@ export default function Page() {
           <h2>Building Atlas,<br /><em>one step at a time.</em></h2>
           <p>We&apos;re starting with the tools students need today and gradually building what comes next.</p>
         </div>
-        <MilestoneSlider chatbotUrl={chatbotUrl} libraryUrl={libraryUrl} />
+        <div className="milestones">
+          <article className="milestone active">
+            <div className="milestone-top"><span>01</span><span className="pill available"><i /> Available</span></div>
+            <h3>Atlas AI</h3>
+            <p>A university-focused AI assistant that helps students find information and guidance.</p>
+          </article>
+          <article className="milestone active">
+            <div className="milestone-top"><span>02</span><span className="pill available"><i /> Available</span></div>
+            <h3>Atlas Library</h3>
+            <p>A searchable collection of practical guides and tutorials designed to help students navigate university processes.</p>
+          </article>
+          <article className="milestone">
+            <div className="milestone-top"><span>03</span><span className="pill"><i /> Exploring</span></div>
+            <h3>More student tools</h3>
+            <p>Additional features will be considered based on real student challenges and feedback.</p>
+          </article>
+        </div>
       </section>
 
       <section id="atlas-ai" className="section container ai-section">
