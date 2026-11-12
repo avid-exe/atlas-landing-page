@@ -1,8 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { MilestoneSlider } from '@/components/milestone-slider'
 
 const chatbotUrl = 'https://unilesa-atlas.vercel.app/'
+const libraryUrl = 'https://atlas-library-henna.vercel.app/'
 const feedbackUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSd6GVS0c7m0Q3exjKru-43uJUL6-g39BU2mvwKfBugMQAKMng/viewform'
 
 function ArrowUpRight() {
@@ -83,9 +85,10 @@ export default function Page() {
           <p className="hero-text">Atlas is a student-built platform designed to help University of Ilesa students find information, access helpful resources, and navigate campus life more easily.</p>
           <div className="hero-actions">
             <a className="button" href={chatbotUrl} target="_blank" rel="noreferrer">Try Atlas AI <ArrowUpRight /></a>
+            <a className="button button-outline" href={libraryUrl} target="_blank" rel="noreferrer">Explore Atlas Library <ArrowUpRight /></a>
             <a className="text-link" href="#feedback">Help shape Atlas <span aria-hidden="true">↓</span></a>
           </div>
-          <p className="status-note">Atlas is currently being built and improved with student feedback.</p>
+          <p className="status-note">Atlas is actively developed with student feedback. Atlas AI and Atlas Library are now live.</p>
         </div>
       </section>
 
@@ -95,23 +98,7 @@ export default function Page() {
           <h2>Building Atlas,<br /><em>one step at a time.</em></h2>
           <p>We&apos;re starting with the tools students need today and gradually building what comes next.</p>
         </div>
-        <div className="milestones">
-          <article className="milestone active">
-            <div className="milestone-top"><span>01</span><span className="pill available"><i /> Available</span></div>
-            <h3>Atlas AI</h3>
-            <p>A university-focused AI assistant that helps students find information and guidance.</p>
-          </article>
-          <article className="milestone">
-            <div className="milestone-top"><span>02</span><span className="pill"><i /> In development</span></div>
-            <h3>Atlas Library</h3>
-            <p>A searchable collection of practical guides and tutorials designed to help students navigate university processes.</p>
-          </article>
-          <article className="milestone">
-            <div className="milestone-top"><span>03</span><span className="pill"><i /> Exploring</span></div>
-            <h3>More student tools</h3>
-            <p>Additional features will be considered based on real student challenges and feedback.</p>
-          </article>
-        </div>
+        <MilestoneSlider chatbotUrl={chatbotUrl} libraryUrl={libraryUrl} />
       </section>
 
       <section id="atlas-ai" className="section container ai-section">
@@ -129,8 +116,20 @@ export default function Page() {
       </section>
 
       <section id="library" className="section library-section container section-bordered">
-        <div><SectionLabel>03 / Coming next</SectionLabel><h2>A guide for the things<br /><em>nobody explains.</em></h2></div>
-        <div className="library-copy"><span className="pill large"><i /> In development</span><p>Atlas Library is being developed to help students find clear, practical guides for common university processes.</p><ul><li>Searchable student guides</li><li>Step-by-step instructions</li><li>Student ratings and anonymous comments</li><li>A way to report outdated information</li></ul></div>
+        <div><SectionLabel>03 / Available now</SectionLabel><h2>A guide for the things<br /><em>nobody explains.</em></h2></div>
+        <div className="library-copy">
+          <span className="pill large available"><i /> Live</span>
+          <p>Atlas Library is live to help students find clear, practical guides for common university processes.</p>
+          <ul>
+            <li>Searchable student guides</li>
+            <li>Step-by-step instructions</li>
+            <li>Student ratings and anonymous comments</li>
+            <li>A way to report outdated information</li>
+          </ul>
+          <div className="library-actions">
+            <a className="button" href={libraryUrl} target="_blank" rel="noreferrer">Explore Atlas Library <ArrowUpRight /></a>
+          </div>
+        </div>
       </section>
 
       <section id="feedback" className="feedback-section">
@@ -153,7 +152,24 @@ export default function Page() {
 
       <section className="community-section container"><div><SectionLabel>06 / Keep in touch</SectionLabel><h2>Stay close to what&apos;s next.</h2><p>Follow Atlas for development updates, upcoming features, and opportunities to share your ideas.</p></div><a className="button" href="https://whatsapp.com/channel/0029Vb9303PLY6czypOJq71Y" target="_blank" rel="noreferrer">Join our WhatsApp channel <ArrowUpRight /></a></section>
 
-      <footer className="site-footer"><div className="container footer-top"><a className="brand" href="#top"><img src="/atlas-network-logo.svg" alt="Atlas network logo" className="brand-mark" /><span>Atlas</span></a><p>Built for UNILESA students.</p><div className="footer-links"><a href={chatbotUrl} target="_blank" rel="noreferrer">Atlas AI <ArrowUpRight /></a><a href={feedbackUrl} target="_blank" rel="noreferrer">Student feedback <ArrowUpRight /></a></div></div><div className="container footer-bottom"><span>© {new Date().getFullYear()} Atlas</span><span>Atlas is an independent student-built project and is not officially affiliated with or endorsed by the University of Ilesa.</span></div></footer>
+      <footer className="site-footer">
+        <div className="container footer-top">
+          <a className="brand" href="#top">
+            <img src="/atlas-network-logo.svg" alt="Atlas network logo" className="brand-mark" />
+            <span>Atlas</span>
+          </a>
+          <p>Built for UNILESA students.</p>
+          <div className="footer-links">
+            <a href={chatbotUrl} target="_blank" rel="noreferrer">Atlas AI <ArrowUpRight /></a>
+            <a href={libraryUrl} target="_blank" rel="noreferrer">Atlas Library <ArrowUpRight /></a>
+            <a href={feedbackUrl} target="_blank" rel="noreferrer">Student feedback <ArrowUpRight /></a>
+          </div>
+        </div>
+        <div className="container footer-bottom">
+          <span>© {new Date().getFullYear()} Atlas</span>
+          <span>Atlas is an independent student-built project and is not officially affiliated with or endorsed by the University of Ilesa.</span>
+        </div>
+      </footer>
     </main>
   )
 }
