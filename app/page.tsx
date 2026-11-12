@@ -21,6 +21,35 @@ export default function Page() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
   useEffect(() => {
+    document.documentElement.classList.add('reveal-enabled')
+
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'))
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      {
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.08,
+      }
+    )
+
+    const elements = document.querySelectorAll('.reveal')
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
     let savedTheme: string | null = null
     try { savedTheme = window.localStorage.getItem('atlas-theme') } catch {}
     const nextTheme = (savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : null) ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
@@ -92,12 +121,12 @@ export default function Page() {
       </section>
 
       <section id="about" className="section section-bordered container">
-        <div className="section-intro">
+        <div className="section-intro reveal">
           <SectionLabel>01 / The work in progress</SectionLabel>
           <h2>Building Atlas,<br /><em>one step at a time.</em></h2>
           <p>We&apos;re starting with the tools students need today and gradually building what comes next.</p>
         </div>
-        <div className="milestones">
+        <div className="milestones reveal reveal-stagger">
           <article className="milestone active">
             <div className="milestone-top"><span>01</span><span className="pill available"><i /> Available</span></div>
             <h3>Atlas AI</h3>
@@ -117,22 +146,25 @@ export default function Page() {
       </section>
 
       <section id="atlas-ai" className="section container ai-section">
-        <div className="ai-heading">
+        <div className="ai-heading reveal">
           <div><SectionLabel>02 / Available now</SectionLabel><h2>Meet <em>Atlas AI.</em></h2></div>
           <p>Ask questions about university information and get helpful guidance through Atlas AI.</p>
         </div>
-        <div className="chat-frame">
+        <div className="chat-frame reveal">
           <div className="frame-bar"><span className="frame-dot" /><span className="frame-url">Atlas AI / Student assistant</span><span className="frame-live">Live preview</span></div>
           {!iframeLoaded && !iframeBlocked && <div className="iframe-loading" aria-live="polite">Loading Atlas AI<span className="loading-dots">...</span></div>}
           {iframeBlocked && !iframeLoaded && <div className="iframe-fallback" role="status"><strong>Atlas AI is ready in its own tab.</strong><span>The preview is taking longer than expected. You can open the full assistant in a new tab.</span><a className="button button-small" href={chatbotUrl} target="_blank" rel="noreferrer">Open Atlas AI <ArrowUpRight /></a></div>}
           <iframe title="Live interactive preview of Atlas AI" src={chatbotUrl} onLoad={() => { setIframeLoaded(true); setIframeBlocked(false) }} />
         </div>
-        <div className="ai-footer"><p>The full Atlas AI experience is available in its own space.</p><a className="text-link" href={chatbotUrl} target="_blank" rel="noreferrer">Open Atlas AI <ArrowUpRight /></a></div>
+        <div className="ai-footer reveal"><p>The full Atlas AI experience is available in its own space.</p><a className="text-link" href={chatbotUrl} target="_blank" rel="noreferrer">Open Atlas AI <ArrowUpRight /></a></div>
       </section>
 
       <section id="library" className="section library-section container section-bordered">
-        <div><SectionLabel>03 / Available now</SectionLabel><h2>A guide for the things<br /><em>nobody explains.</em></h2></div>
-        <div className="library-copy">
+        <div className="reveal">
+          <SectionLabel>03 / Available now</SectionLabel>
+          <h2>A guide for the things<br /><em>nobody explains.</em></h2>
+        </div>
+        <div className="library-copy reveal">
           <span className="pill large available"><i /> Live</span>
           <p>Atlas Library is live to help students find clear, practical guides for common university processes.</p>
           <ul>
@@ -148,7 +180,7 @@ export default function Page() {
       </section>
 
       <section id="feedback" className="feedback-section">
-        <div className="container feedback-inner">
+        <div className="container feedback-inner reveal">
           <SectionLabel>04 / Your voice matters</SectionLabel>
           <h2>Help us build something<br /><em>students actually need.</em></h2>
           <p>We don&apos;t want to guess what students struggle with. We want to hear directly from you.</p>
@@ -157,15 +189,25 @@ export default function Page() {
       </section>
 
       <section className="section approach container">
-        <div><SectionLabel>05 / Our approach</SectionLabel><h2>Built with students,<br /><em>for students.</em></h2></div>
-        <div className="principles">
+        <div className="reveal">
+          <SectionLabel>05 / Our approach</SectionLabel>
+          <h2>Built with students,<br /><em>for students.</em></h2>
+        </div>
+        <div className="principles reveal reveal-stagger">
           <article><span>01</span><h3>Listen first</h3><p>Understand the challenges UNILESA students experience.</p></article>
           <article><span>02</span><h3>Build thoughtfully</h3><p>Develop tools that solve meaningful problems rather than adding unnecessary features.</p></article>
           <article><span>03</span><h3>Improve continuously</h3><p>Use student feedback to refine existing features and guide what comes next.</p></article>
         </div>
       </section>
 
-      <section className="community-section container"><div><SectionLabel>06 / Keep in touch</SectionLabel><h2>Stay close to what&apos;s next.</h2><p>Follow Atlas for development updates, upcoming features, and opportunities to share your ideas.</p></div><a className="button" href="https://whatsapp.com/channel/0029Vb9303PLY6czypOJq71Y" target="_blank" rel="noreferrer">Join our WhatsApp channel <ArrowUpRight /></a></section>
+      <section className="community-section container reveal">
+        <div>
+          <SectionLabel>06 / Keep in touch</SectionLabel>
+          <h2>Stay close to what&apos;s next.</h2>
+          <p>Follow Atlas for development updates, upcoming features, and opportunities to share your ideas.</p>
+        </div>
+        <a className="button" href="https://whatsapp.com/channel/0029Vb9303PLY6czypOJq71Y" target="_blank" rel="noreferrer">Join our WhatsApp channel <ArrowUpRight /></a>
+      </section>
 
       <footer className="site-footer">
         <div className="container footer-top">
