@@ -6,10 +6,6 @@ const chatbotUrl = 'https://unilesa-atlas.vercel.app/'
 const libraryUrl = 'https://atlas-library-henna.vercel.app/'
 const feedbackUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSd6GVS0c7m0Q3exjKru-43uJUL6-g39BU2mvwKfBugMQAKMng/viewform'
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <p className="section-label">{children}</p>
-}
-
 export default function Page() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [iframeLoaded, setIframeLoaded] = useState(false)
@@ -104,7 +100,6 @@ export default function Page() {
 
       <section id="top" tabIndex={-1} className="hero container">
         <div className="hero-copy">
-          <p className="eyebrow"><span className="eyebrow-dot" /> An independent student-built project</p>
           <h1>Your campus.<br /><em>Your questions.</em><br />One Atlas.</h1>
           <p className="hero-text">Atlas helps University of Ilesa students find answers, access resources, and navigate campus life.</p>
           <div className="hero-actions">
@@ -112,14 +107,12 @@ export default function Page() {
             <a className="button button-outline" href={libraryUrl} target="_blank" rel="noreferrer">Explore Atlas Library</a>
             <a className="text-link" href="#feedback">Help shape Atlas <span aria-hidden="true">↓</span></a>
           </div>
-          <p className="status-note">Atlas is actively developed with student feedback. Atlas AI and Atlas Library are now live.</p>
         </div>
       </section>
 
       <section id="about" className="section section-bordered container">
         <div className="section-intro reveal">
           <div>
-            <SectionLabel>01 / The work in progress</SectionLabel>
             <h2>Building Atlas,<br /><em>one step at a time.</em></h2>
           </div>
           <p>We&apos;re starting with the tools students need today and gradually building what comes next.</p>
@@ -145,7 +138,7 @@ export default function Page() {
 
       <section id="atlas-ai" className="section container ai-section">
         <div className="ai-heading reveal">
-          <div><SectionLabel>02 / Available now</SectionLabel><h2>Meet <em>Atlas AI.</em></h2></div>
+          <div><h2>Meet <em>Atlas AI.</em></h2></div>
           <p>Ask questions about university information and get helpful guidance through Atlas AI.</p>
         </div>
         <div className="chat-frame reveal">
@@ -159,7 +152,6 @@ export default function Page() {
 
       <section id="library" className="section library-section container section-bordered">
         <div className="reveal">
-          <SectionLabel>03 / Available now</SectionLabel>
           <h2>A guide for the things<br /><em>nobody explains.</em></h2>
         </div>
         <div className="library-copy reveal">
@@ -179,7 +171,6 @@ export default function Page() {
 
       <section id="feedback" className="feedback-section">
         <div className="container feedback-inner reveal">
-          <SectionLabel>04 / Your voice matters</SectionLabel>
           <h2>Help us build something<br /><em>students actually need.</em></h2>
           <p>We don&apos;t want to guess what students struggle with. We want to hear directly from you.</p>
           <a className="button button-light" href={feedbackUrl} target="_blank" rel="noreferrer">Share your experience</a>
@@ -188,7 +179,6 @@ export default function Page() {
 
       <section className="section approach container">
         <div className="reveal">
-          <SectionLabel>05 / Our approach</SectionLabel>
           <h2>Built with students,<br /><em>for students.</em></h2>
         </div>
         <div className="principles reveal reveal-stagger">
@@ -200,7 +190,6 @@ export default function Page() {
 
       <section className="community-section container reveal">
         <div>
-          <SectionLabel>06 / Keep in touch</SectionLabel>
           <h2>Stay close to what&apos;s next.</h2>
           <p>Follow Atlas for development updates, upcoming features, and opportunities to share your ideas.</p>
         </div>
