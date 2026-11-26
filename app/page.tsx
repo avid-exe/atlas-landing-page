@@ -213,7 +213,7 @@ export default function Page() {
         </div>
         <div className="container footer-bottom">
           <span>© {new Date().getFullYear()} Atlas</span>
-          <span>Atlas is an independent student-built project and is not officially affiliated with or endorsed by the University of Ilesa.</span>
+          <span>Independent student project. Not affiliated with or endorsed by UNILESA.</span>
         </div>
       </footer>
     </main>
