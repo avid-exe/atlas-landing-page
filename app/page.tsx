@@ -105,7 +105,7 @@ export default function Page() {
           <div className="hero-actions">
             <a className="button" href={chatbotUrl} target="_blank" rel="noreferrer">Try Atlas AI</a>
             <a className="button button-outline" href={libraryUrl} target="_blank" rel="noreferrer">Explore Atlas Library</a>
-            <a className="text-link" href="#feedback">Help shape Atlas <span aria-hidden="true">↓</span></a>
+            <a className="text-link" href="#feedback">Help shape Atlas</a>
           </div>
         </div>
       </section>
@@ -198,11 +198,13 @@ export default function Page() {
 
       <footer className="site-footer">
         <div className="container footer-top">
-          <a className="brand" href="#top">
-            <img src="/atlas-network-logo.svg" alt="Atlas network logo" className="brand-mark" />
-            <span>Atlas</span>
-          </a>
-          <p>Built for UNILESA students.</p>
+          <div className="footer-brand">
+            <a className="brand" href="#top">
+              <img src="/atlas-network-logo.svg" alt="Atlas network logo" className="brand-mark" />
+              <span>Atlas</span>
+            </a>
+            <p>Built for UNILESA students.</p>
+          </div>
           <div className="footer-links">
             <a href={chatbotUrl} target="_blank" rel="noreferrer">Atlas AI</a>
             <a href={libraryUrl} target="_blank" rel="noreferrer">Atlas Library</a>
