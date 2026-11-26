@@ -205,15 +205,25 @@ export default function Page() {
             </a>
             <p>Built for UNILESA students.</p>
           </div>
-          <div className="footer-links">
+          <nav className="footer-links" aria-label="Atlas tools">
+            <h3>Tools</h3>
             <a href={chatbotUrl} target="_blank" rel="noreferrer">Atlas AI</a>
             <a href={libraryUrl} target="_blank" rel="noreferrer">Atlas Library</a>
+          </nav>
+          <nav className="footer-links" aria-label="Atlas community">
+            <h3>Community</h3>
             <a href={feedbackUrl} target="_blank" rel="noreferrer">Student feedback</a>
-          </div>
+            <a href="https://whatsapp.com/channel/0029Vb9303PLY6czypOJq71Y" target="_blank" rel="noreferrer">WhatsApp channel</a>
+          </nav>
+          <nav className="footer-links" aria-label="About Atlas">
+            <h3>Atlas</h3>
+            <a href="#about">About the project</a>
+            <a href="#top">Back to top</a>
+          </nav>
         </div>
         <div className="container footer-bottom">
-          <span>© {new Date().getFullYear()} Atlas</span>
           <span>Independent student project. Not affiliated with or endorsed by UNILESA.</span>
+          <span>© {new Date().getFullYear()} Atlas</span>
         </div>
       </footer>
     </main>
