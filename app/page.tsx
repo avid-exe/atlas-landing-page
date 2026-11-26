@@ -1,12 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const chatbotUrl = 'https://unilesa-atlas.vercel.app/'
 const libraryUrl = 'https://atlas-library-henna.vercel.app/'
 const feedbackUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSd6GVS0c7m0Q3exjKru-43uJUL6-g39BU2mvwKfBugMQAKMng/viewform'
 
 export default function Page() {
+  const headerRef = useRef<HTMLElement>(null)
+  const milestonesRef = useRef<HTMLDivElement>(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const [iframeLoaded, setIframeLoaded] = useState(false)
   const [iframeBlocked, setIframeBlocked] = useState(false)
@@ -41,6 +43,42 @@ export default function Page() {
   }, [])
 
   useEffect(() => {
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const mobile = window.matchMedia('(max-width: 720px)')
+    let frame = 0
+    const update = () => {
+      frame = 0
+      if (headerRef.current) headerRef.current.dataset.scrolled = String(window.scrollY > 24)
+      const timeline = milestonesRef.current
+      if (!timeline) return
+      const rect = timeline.getBoundingClientRect()
+      const distance = mobile.matches ? rect.height : window.innerHeight * 0.5
+      const progress = motion.matches ? 1 : Math.min(1, Math.max(0, (window.innerHeight * 0.8 - rect.top) / distance))
+      timeline.style.setProperty('--timeline-progress', String(progress))
+      timeline.querySelectorAll<HTMLElement>('.milestone').forEach((item, index) => {
+        const threshold = mobile.matches ? item.offsetTop / rect.height : index / 3
+        item.dataset.linked = String(progress >= threshold && progress > 0)
+      })
+    }
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(update)
+    }
+    const resize = new ResizeObserver(schedule)
+    if (milestonesRef.current) resize.observe(milestonesRef.current)
+    window.addEventListener('scroll', schedule, { passive: true })
+    window.addEventListener('resize', schedule)
+    motion.addEventListener('change', schedule)
+    update()
+    return () => {
+      window.cancelAnimationFrame(frame)
+      resize.disconnect()
+      window.removeEventListener('scroll', schedule)
+      window.removeEventListener('resize', schedule)
+      motion.removeEventListener('change', schedule)
+    }
+  }, [])
+
+  useEffect(() => {
     if (iframeLoaded) return
     const timeout = window.setTimeout(() => setIframeBlocked(true), 10000)
     return () => window.clearTimeout(timeout)
@@ -62,7 +100,7 @@ export default function Page() {
   return (
     <main>
       <a className="skip-link" href="#top">Skip to content</a>
-      <header className="site-header">
+      <header ref={headerRef} className="site-header">
         <div className="container nav-wrap">
           <a className="brand" href="#top" aria-label="Atlas home" onClick={closeMenu}>
             <img src="/atlas-network-logo.svg" alt="Atlas network logo" className="brand-mark" />
@@ -101,7 +139,7 @@ export default function Page() {
           </div>
           <p>We&apos;re starting with the tools students need today and gradually building what comes next.</p>
         </div>
-        <div className="milestones reveal reveal-stagger">
+        <div ref={milestonesRef} className="milestones reveal reveal-stagger">
           <article className="milestone active">
             <div className="milestone-top"><span>01</span><span className="pill available"><i /> Available</span></div>
             <h3>Atlas AI</h3>
