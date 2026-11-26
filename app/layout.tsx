@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   icons: { icon: '/atlas-network-logo.svg', apple: '/apple-icon.png' },
 }
 
-export const viewport: Viewport = { colorScheme: 'light', themeColor: '#F7FAFF', width: 'device-width', initialScale: 1 }
+export const viewport: Viewport = { colorScheme: 'light dark', themeColor: [{ media: '(prefers-color-scheme: light)', color: '#F7FAFF' }, { media: '(prefers-color-scheme: dark)', color: '#111111' }], width: 'device-width', initialScale: 1 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="en"><body>{children}{process.env.NODE_ENV === 'production' && <Analytics />}</body></html>

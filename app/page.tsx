@@ -10,7 +10,6 @@ export default function Page() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [iframeLoaded, setIframeLoaded] = useState(false)
   const [iframeBlocked, setIframeBlocked] = useState(false)
-  const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
   useEffect(() => {
     document.documentElement.classList.add('reveal-enabled')
@@ -40,21 +39,6 @@ export default function Page() {
 
     return () => observer.disconnect()
   }, [])
-
-  useEffect(() => {
-    let savedTheme: string | null = null
-    try { savedTheme = window.localStorage.getItem('atlas-theme') } catch {}
-    const nextTheme = (savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : null) ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-    setTheme(nextTheme)
-    document.documentElement.dataset.theme = nextTheme
-  }, [])
-
-  const toggleTheme = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark'
-    setTheme(nextTheme)
-    document.documentElement.dataset.theme = nextTheme
-    try { window.localStorage.setItem('atlas-theme', nextTheme) } catch {}
-  }
 
   useEffect(() => {
     if (iframeLoaded) return
@@ -93,7 +77,7 @@ export default function Page() {
             <a href="#atlas-ai" onClick={closeMenu}>Atlas AI</a>
             <a href="#library" onClick={closeMenu}>Atlas Library</a>
             <a href="#feedback" onClick={closeMenu}>Student Feedback</a>
-            <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`} title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}><span className="sr-only">{theme === 'dark' ? 'Light mode' : 'Dark mode'}</span>{theme === 'dark' ? <svg className="theme-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="1.8" /><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" /></svg> : <svg className="theme-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8 8 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" /></svg>}</button><a className="button button-small" href={chatbotUrl} target="_blank" rel="noreferrer">Try Atlas AI</a>
+            <a className="button button-small" href={chatbotUrl} target="_blank" rel="noreferrer">Try Atlas AI</a>
           </nav>
         </div>
       </header>
