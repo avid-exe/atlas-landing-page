@@ -6,10 +6,6 @@ const chatbotUrl = 'https://unilesa-atlas.vercel.app/'
 const libraryUrl = 'https://atlas-library-henna.vercel.app/'
 const feedbackUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSd6GVS0c7m0Q3exjKru-43uJUL6-g39BU2mvwKfBugMQAKMng/viewform'
 
-function ArrowUpRight() {
-  return <span aria-hidden="true" className="arrow">↗</span>
-}
-
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return <p className="section-label">{children}</p>
 }
@@ -101,7 +97,7 @@ export default function Page() {
             <a href="#atlas-ai" onClick={closeMenu}>Atlas AI</a>
             <a href="#library" onClick={closeMenu}>Atlas Library</a>
             <a href="#feedback" onClick={closeMenu}>Student Feedback</a>
-            <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`} title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}><span className="sr-only">{theme === 'dark' ? 'Light mode' : 'Dark mode'}</span>{theme === 'dark' ? <svg className="theme-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="1.8" /><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" /></svg> : <svg className="theme-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8 8 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" /></svg>}</button><a className="button button-small" href={chatbotUrl} target="_blank" rel="noreferrer">Try Atlas AI <ArrowUpRight /></a>
+            <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`} title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}><span className="sr-only">{theme === 'dark' ? 'Light mode' : 'Dark mode'}</span>{theme === 'dark' ? <svg className="theme-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="1.8" /><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" /></svg> : <svg className="theme-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8 8 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" /></svg>}</button><a className="button button-small" href={chatbotUrl} target="_blank" rel="noreferrer">Try Atlas AI</a>
           </nav>
         </div>
       </header>
@@ -112,8 +108,8 @@ export default function Page() {
           <h1>Your campus.<br /><em>Your questions.</em><br />One Atlas.</h1>
           <p className="hero-text">Atlas helps University of Ilesa students find answers, access resources, and navigate campus life.</p>
           <div className="hero-actions">
-            <a className="button" href={chatbotUrl} target="_blank" rel="noreferrer">Try Atlas AI <ArrowUpRight /></a>
-            <a className="button button-outline" href={libraryUrl} target="_blank" rel="noreferrer">Explore Atlas Library <ArrowUpRight /></a>
+            <a className="button" href={chatbotUrl} target="_blank" rel="noreferrer">Try Atlas AI</a>
+            <a className="button button-outline" href={libraryUrl} target="_blank" rel="noreferrer">Explore Atlas Library</a>
             <a className="text-link" href="#feedback">Help shape Atlas <span aria-hidden="true">↓</span></a>
           </div>
           <p className="status-note">Atlas is actively developed with student feedback. Atlas AI and Atlas Library are now live.</p>
@@ -155,10 +151,10 @@ export default function Page() {
         <div className="chat-frame reveal">
           <div className="frame-bar"><span className="frame-dot" /><span className="frame-url">Atlas AI / Student assistant</span><span className="frame-live">Live preview</span></div>
           {!iframeLoaded && !iframeBlocked && <div className="iframe-loading" aria-live="polite">Loading Atlas AI<span className="loading-dots">...</span></div>}
-          {iframeBlocked && !iframeLoaded && <div className="iframe-fallback" role="status"><strong>Atlas AI is ready in its own tab.</strong><span>The preview is taking longer than expected. You can open the full assistant in a new tab.</span><a className="button button-small" href={chatbotUrl} target="_blank" rel="noreferrer">Open Atlas AI <ArrowUpRight /></a></div>}
+          {iframeBlocked && !iframeLoaded && <div className="iframe-fallback" role="status"><strong>Atlas AI is ready in its own tab.</strong><span>The preview is taking longer than expected. You can open the full assistant in a new tab.</span><a className="button button-small" href={chatbotUrl} target="_blank" rel="noreferrer">Open Atlas AI</a></div>}
           <iframe title="Live interactive preview of Atlas AI" src={chatbotUrl} onLoad={() => { setIframeLoaded(true); setIframeBlocked(false) }} />
         </div>
-        <div className="ai-footer reveal"><p>The full Atlas AI experience is available in its own space.</p><a className="text-link" href={chatbotUrl} target="_blank" rel="noreferrer">Open Atlas AI <ArrowUpRight /></a></div>
+        <div className="ai-footer reveal"><p>The full Atlas AI experience is available in its own space.</p><a className="text-link" href={chatbotUrl} target="_blank" rel="noreferrer">Open Atlas AI</a></div>
       </section>
 
       <section id="library" className="section library-section container section-bordered">
@@ -176,7 +172,7 @@ export default function Page() {
             <li>A way to report outdated information</li>
           </ul>
           <div className="library-actions">
-            <a className="button" href={libraryUrl} target="_blank" rel="noreferrer">Explore Atlas Library <ArrowUpRight /></a>
+            <a className="button" href={libraryUrl} target="_blank" rel="noreferrer">Explore Atlas Library</a>
           </div>
         </div>
       </section>
@@ -186,7 +182,7 @@ export default function Page() {
           <SectionLabel>04 / Your voice matters</SectionLabel>
           <h2>Help us build something<br /><em>students actually need.</em></h2>
           <p>We don&apos;t want to guess what students struggle with. We want to hear directly from you.</p>
-          <a className="button button-light" href={feedbackUrl} target="_blank" rel="noreferrer">Share your experience <ArrowUpRight /></a>
+          <a className="button button-light" href={feedbackUrl} target="_blank" rel="noreferrer">Share your experience</a>
         </div>
       </section>
 
@@ -208,7 +204,7 @@ export default function Page() {
           <h2>Stay close to what&apos;s next.</h2>
           <p>Follow Atlas for development updates, upcoming features, and opportunities to share your ideas.</p>
         </div>
-        <a className="button" href="https://whatsapp.com/channel/0029Vb9303PLY6czypOJq71Y" target="_blank" rel="noreferrer">Join our WhatsApp channel <ArrowUpRight /></a>
+        <a className="button" href="https://whatsapp.com/channel/0029Vb9303PLY6czypOJq71Y" target="_blank" rel="noreferrer">Join our WhatsApp channel</a>
       </section>
 
       <footer className="site-footer">
@@ -219,9 +215,9 @@ export default function Page() {
           </a>
           <p>Built for UNILESA students.</p>
           <div className="footer-links">
-            <a href={chatbotUrl} target="_blank" rel="noreferrer">Atlas AI <ArrowUpRight /></a>
-            <a href={libraryUrl} target="_blank" rel="noreferrer">Atlas Library <ArrowUpRight /></a>
-            <a href={feedbackUrl} target="_blank" rel="noreferrer">Student feedback <ArrowUpRight /></a>
+            <a href={chatbotUrl} target="_blank" rel="noreferrer">Atlas AI</a>
+            <a href={libraryUrl} target="_blank" rel="noreferrer">Atlas Library</a>
+            <a href={feedbackUrl} target="_blank" rel="noreferrer">Student feedback</a>
           </div>
         </div>
         <div className="container footer-bottom">
