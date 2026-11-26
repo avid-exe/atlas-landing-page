@@ -46,17 +46,32 @@ export default function Page() {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
     const mobile = window.matchMedia('(max-width: 720px)')
     let frame = 0
+    let lastScroll = Math.max(0, window.scrollY)
     const update = () => {
       frame = 0
-      if (headerRef.current) headerRef.current.dataset.scrolled = String(window.scrollY > 24)
+      const scroll = Math.max(0, window.scrollY)
+      const header = headerRef.current
+      if (header) {
+        header.dataset.scrolled = String(scroll > 24)
+        if (scroll < 96) {
+          header.dataset.hidden = 'false'
+          lastScroll = scroll
+        } else if (Math.abs(scroll - lastScroll) >= 10) {
+          header.dataset.hidden = String(scroll > lastScroll)
+          lastScroll = scroll
+        }
+      }
       const timeline = milestonesRef.current
       if (!timeline) return
       const rect = timeline.getBoundingClientRect()
       const distance = mobile.matches ? rect.height : window.innerHeight * 0.5
       const progress = motion.matches ? 1 : Math.min(1, Math.max(0, (window.innerHeight * 0.8 - rect.top) / distance))
       timeline.style.setProperty('--timeline-progress', String(progress))
-      timeline.querySelectorAll<HTMLElement>('.milestone').forEach((item, index) => {
-        const threshold = mobile.matches ? item.offsetTop / rect.height : index / 3
+      timeline.querySelectorAll<HTMLElement>('.milestone').forEach((item) => {
+        const marker = window.getComputedStyle(item, '::before')
+        const threshold = mobile.matches
+          ? (item.offsetTop + parseFloat(marker.top) + 5) / rect.height
+          : (item.offsetLeft + parseFloat(marker.left) + 5) / rect.width
         item.dataset.linked = String(progress >= threshold && progress > 0)
       })
     }
@@ -100,7 +115,7 @@ export default function Page() {
   return (
     <main>
       <a className="skip-link" href="#top">Skip to content</a>
-      <header ref={headerRef} className="site-header">
+      <header ref={headerRef} className="site-header" data-menu-open={menuOpen}>
         <div className="container nav-wrap">
           <a className="brand" href="#top" aria-label="Atlas home" onClick={closeMenu}>
             <img src="/atlas-network-logo.svg" alt="Atlas network logo" className="brand-mark" />
