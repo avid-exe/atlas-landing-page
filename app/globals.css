@@ -115,7 +115,6 @@ html { scroll-padding-top:88px; }.container { width:min(calc(100% - 36px),560px)
 .site-header[data-scrolled="true"] { background:color-mix(in srgb,var(--bg) 96%,transparent); box-shadow:0 10px 32px #00000018; }
 .nav-wrap { width:calc(100% - 36px); min-height:66px; }
 .site-nav .button { border-radius:100px; padding-inline:16px; }
-.hero-actions .button { border-radius:100px; padding-inline:20px; }
 .site-nav a:not(.button) { position:relative; }
 .site-nav a:not(.button)::after { content:''; position:absolute; left:0; right:0; bottom:-6px; height:1px; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform .25s; }
 .site-nav a:not(.button):hover::after,.site-nav a:not(.button):focus-visible::after { transform:scaleX(1); }
