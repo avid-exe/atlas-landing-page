@@ -114,7 +114,7 @@ html { scroll-padding-top:88px; }.container { width:min(calc(100% - 36px),560px)
 .site-header { top:16px; width:min(1160px,calc(100% - 48px)); margin:16px auto 0; border:1px solid var(--line); border-radius:100px; background:color-mix(in srgb,var(--bg) 88%,transparent); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:0 8px 28px #00000008; transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .25s,box-shadow .3s,background .3s; animation:headerUnveil .7s cubic-bezier(.16,1,.3,1) backwards; }
 .site-header[data-scrolled="true"] { background:color-mix(in srgb,var(--bg) 96%,transparent); box-shadow:0 10px 32px #00000018; }
 .nav-wrap { width:calc(100% - 36px); min-height:66px; }
-.site-nav .button { border-radius:100px; padding-inline:16px; }
+.site-nav .button { padding-inline:14px; }
 .site-nav a:not(.button) { position:relative; }
 .site-nav a:not(.button)::after { content:''; position:absolute; left:0; right:0; bottom:-6px; height:1px; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform .25s; }
 .site-nav a:not(.button):hover::after,.site-nav a:not(.button):focus-visible::after { transform:scaleX(1); }
